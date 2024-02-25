@@ -29,16 +29,9 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="info">
-                    <a href="#" class="d-block">Hello {{Auth::user()->name}}</a>
-                </div>
-            </div>
-
 
             <!-- Sidebar Menu -->
-            <nav class="mt-2">
+            <nav class="mt-5">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
@@ -54,15 +47,15 @@
                         <a href="{{\URL::to('/dashboard')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Dashboard
+                                My Request
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{\URL::to('/calendar')}}" class="nav-link">
+                        <a href="{{\URL::to('/order')}}" class="nav-link">
                             <i class="nav-icon fas fa-calendar"></i>
                             <p>
-                                calendar
+                                New Order
                             </p>
                         </a>
                     </li>

@@ -29,4 +29,8 @@ class HomeController extends Controller
     public function dashboard(){
         return view('layouts/dashboard');
     }
+
+    public function order(){
+        return view('order');
+    }
 }
