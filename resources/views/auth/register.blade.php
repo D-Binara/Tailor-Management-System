@@ -1,80 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Laravel') }} - Dashboard</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f8f9fa; /* Light gray background */
-        }
-
-        #sidebar {
-            background-color: #8105D8; /* Purple color theme */
-            color: #fff; /* White text */
-        }
-
-        #sidebar a {
-            color: #fff;
-        }
-
-        #sidebar a:hover {
-            color: #f0f0f0; /* Lighter text on hover */
-        }
-
-        main {
-            margin-top: 20px;
-        }
-    </style>
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+<div class="row">
+    <div></div>
+    <div class="container col-md-6" style="padding-top: 200px">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-0">
+                    <div class="card-header border-0 fw-bolder h2" style="color: #8105D8">{{ __('Register') }}</div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active " href="#">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-box"></i> Products
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-users"></i> Customers
-                        </a>
-                    </li>
-                    <!-- Add more sidebar items with icons as needed -->
-                </ul>
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-form-label ">{{ __('Name') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="name" type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email"
+                                       class="col-md-4 col-form-label">{{ __('Email Address') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="email" type="email"
+                                           class="form-control @error('email') is-invalid @enderror"
+                                           name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="password"
+                                       class="col-md-4 col-form-label ">{{ __('Password') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="password" type="password"
+                                           class="form-control @error('password') is-invalid @enderror" name="password"
+                                           required autocomplete="new-password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="password-confirm"
+                                       class="col-md-4 col-form-label ">{{ __('Confirm Password') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="row mb-0">
+                                    <button type="submit" style="background-color: #8105D8; color: white" class="btn col-md-12">
+                                        {{ __('Register') }}
+                                    </button>
+                            </div>
+
+                            <div class="col-12 text-end mt-2">
+                                <a class="btn " style="color: #8105D8" href="{{ route('login') }}">
+                                    {{('Do already have an account? Login here.')}}
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </div>
     </div>
-</div>
-<main class="container">
-    @yield('dashboard')
-</main>
-<!-- Bootstrap JS and dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
+    <div class="col-md-6" style="background-image: url('{{url('/images/tailor_shop_dark.jpg')}}'); background-size: cover; height: 100vh;"></div>
+</div>
 </body>
 </html>
