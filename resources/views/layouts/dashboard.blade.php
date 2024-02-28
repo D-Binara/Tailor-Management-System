@@ -25,7 +25,7 @@
 <div class="wrapper">
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar  elevation-4" style="background-color:#7ECFF9">
+    <aside class="main-sidebar  elevation-4" style="background-color:#8105D8">
 
         <!-- Sidebar -->
         <div class="sidebar">

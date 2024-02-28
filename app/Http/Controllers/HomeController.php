@@ -33,4 +33,9 @@ class HomeController extends Controller
     public function order(){
         return view('order');
     }
+
+    public function new_order(){
+        return view('new_order');
+    }
+
 }
