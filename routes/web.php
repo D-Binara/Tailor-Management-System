@@ -23,6 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('order');
 Route::get('/new_order', [App\Http\Controllers\HomeController::class, 'new_order'])->name('new_order');
+Route::post('/request_order', [App\Http\Controllers\OrderController::class, 'request_order'])->name('request_order');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 
 
 

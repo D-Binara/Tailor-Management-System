@@ -113,15 +113,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{\URL::to('/new_order')}}" class="nav-link">
+                        <a href="{{\URL::to('/order')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                My Request
+                                My Orders
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{\URL::to('/order')}}" class="nav-link">
+                        <a href="{{\URL::to('/new_order')}}" class="nav-link">
                             <i class="nav-icon fas fa-calendar"></i>
                             <p>
                                 New Order

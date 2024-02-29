@@ -38,4 +38,7 @@ class HomeController extends Controller
         return view('new_order');
     }
 
+    public function profile(){
+        return view ('profile');
+    }
 }
