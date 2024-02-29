@@ -23,7 +23,7 @@
     <!-- Preloader Start-->
 
     <!--? slider Area Start-->
-    <div class="slider-area  position-relative ">
+    <div class="slider-area  position-relative " style="background-image: url('{{url('/images/tailor_shop_dark.jpg')}}'); background-size: cover; height: 100vh;">
         <div class="slider-active">
             <!-- Single Slider -->
             <div class="single-slider position-relative hero-overly slider-height  d-flex"
