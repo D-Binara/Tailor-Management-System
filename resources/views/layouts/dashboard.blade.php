@@ -22,15 +22,32 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        .nav-item.active {
+            background-color: #8105D8; /* Set the background color for the active item */
+            color: #fff; /* Set the text color for the active item */
+            border-radius: 20px;
+        }
+
+        .full-page-container {
+            background-image: url('{{url('/images/tailor_shop_dark.jpg')}}');
+            background-size: cover;
+            /* Set the height to cover the entire viewport */
+            border-radius: 20px;
+        }
+
+    </style>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 
 
 {{--nav bar--}}
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container-fluid">
-            <a class="h3 fw-bolder " style="color: #3B064D" href="{{ url('/') }}">
+<div id="app" style=" background-color: #8105D8">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-radius: 20px;">
+        <div class="container-fluid" >
+            <a class="h3 fw-bolder " style="color: #3B064D; text-decoration: none;" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -85,92 +102,68 @@
         </div>
     </nav>
 
-    <main>
-        @yield('content')
-    </main>
 </div>
 {{--nav bar end--}}
-<div class="wrapper">
+
+<div class="wrapper" style="background-color: #8105D8">
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar elevation-4 shadow-sm navbar-light bg-white" >
+    <aside class="main-sidebar elevation-4 shadow-sm navbar-light" style="border-radius: 20px;">
 
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" >
 
             <!-- Sidebar Menu -->
             <nav class="mt-5">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <li class="nav-item">
-                        <a href="{{\URL::to('/home')}}" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>
-                                Home
-                            </p>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Home Link -->
+                    <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/home')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                            <i class="nav-icon fas fa-home" style="color: #000000;"></i> <!-- Change color here -->
+                            <p>Home</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{\URL::to('/order')}}" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                My Orders
-                            </p>
+
+                    <!-- My Orders Link -->
+                    <li class="nav-item {{ Request::is('order') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/order')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                            <i class="nav-icon fas fa-tachometer-alt" style="color: #000000;"></i> <!-- Change color here -->
+                            <p>My Orders</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{\URL::to('/new_order')}}" class="nav-link">
-                            <i class="nav-icon fas fa-calendar"></i>
-                            <p>
-                                New Order
-                            </p>
+
+                    <!-- New Order Link -->
+                    <li class="nav-item {{ Request::is('new_order') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/new_order')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                            <i class="nav-icon fas fa-calendar" style="color: #000000;"></i> <!-- Change color here -->
+                            <p>New Order</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{\URL::to('/profile')}}" class="nav-link">
-                            <i class="nav-icon fas fa-user-graduate"></i>
-                            <p>
-                                Profile
-                            </p>
+
+                    <!-- Profile Link -->
+                    <li class="nav-item {{ Request::is('profile') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/profile')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i> <!-- Change color here -->
+                            <p>Profile</p>
                         </a>
                     </li>
                 </ul>
             </nav>
+
+
+
+
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="background-color: #8105D8;">
         @yield('dashboard')
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-            <h5>Title</h5>
-            <p>Sidebar content</p>
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
-
-
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-            Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2023 <a href="https://d-binara.github.io/">d-binara.github.io/</a>.</strong> All rights
-        reserved.
-    </footer>
-</div>
 <!-- ./wrapper -->
 
 
@@ -180,5 +173,7 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="js/adminlte.js"></script>
+
+
 </body>
 </html>
