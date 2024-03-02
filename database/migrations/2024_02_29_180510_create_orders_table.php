@@ -14,7 +14,20 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->name();
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('order_type');
+            $table->integer('height');
+            $table->integer('width');
+            $table->string('color');
+            $table->date('order_date');
+            $table->date('delivery_date')->nullable();
+            $table->enum('status', ['pending', 'processing', 'completed'])->default('pending');
+            $table->decimal('price', 8, 2);
+            $table->integer('quantity')->default(1);
+
+            // Foreign key constraint to connect orders and users
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -25,6 +25,8 @@ Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->nam
 Route::get('/new_order', [App\Http\Controllers\HomeController::class, 'new_order'])->name('new_order');
 Route::post('/request_order', [App\Http\Controllers\OrderController::class, 'request_order'])->name('request_order');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
+
 
 
 

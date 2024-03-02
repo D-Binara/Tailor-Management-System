@@ -124,6 +124,14 @@
                         </a>
                     </li>
 
+                    <!-- product Link -->
+                    <li class="nav-item {{ Request::is('product') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/product')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i> <!-- Change color here -->
+                            <p>product</p>
+                        </a>
+                    </li>
+
                     <!-- My Orders Link -->
                     <li class="nav-item {{ Request::is('order') ? 'active' : '' }}">
                         <a href="{{\URL::to('/order')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
@@ -147,6 +155,8 @@
                             <p>Profile</p>
                         </a>
                     </li>
+
+
                 </ul>
             </nav>
 

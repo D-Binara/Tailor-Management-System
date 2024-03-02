@@ -41,4 +41,9 @@ class HomeController extends Controller
     public function profile(){
         return view ('profile');
     }
+
+    public function product(){
+        return view ('product');
+    }
+
 }

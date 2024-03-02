@@ -1,12 +1,11 @@
 @extends('layouts.dashboard')
-
 @section('dashboard')
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    {{--    <link rel="stylesheet" href="assets/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
+    {{--    <link rel="stylesheet" href="assets/css/animated-headline.css">--}}
+    {{--    <link rel="stylesheet" href="assets/css/slick.css">--}}
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- ? Preloader Start -->
@@ -15,61 +14,72 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.png" alt="">
+                    <img src="/images/tailor_shop_dark.jpg" alt="">
                 </div>
             </div>
         </div>
     </div>
     <!-- Preloader Start-->
 
+
     <!--? slider Area Start-->
-    <div class="slider-area  position-relative ">
+    <div class="slider-area  position-relative full-page-container"
+         style="background-image: url('{{url('/images/tailor_shop_dark.jpg')}}'); background-size: cover;">
         <div class="slider-active">
             <!-- Single Slider -->
-            <div class="single-slider position-relative hero-overly slider-height  d-flex">
+            <div class="single-slider position-relative slider-height  d-flex">
 
-
-            {{--form start--}}
-                <div class="col-sm-8" style="margin-top: 45px;margin-left: auto; margin-right: auto;">
-                    <div class="card" >
-                        <div class="card-body ">
-                            <form class="form-sample" method="post" action="{{route('request_order')}}" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <h3 class="text-center">Edit Your Profile</h3>
-                                <div class="form-group">
-                                    <label>User Name :-</label>
-                                    <label style="display: block" >
-                                        <input type="text" placeholder="User Name" name="user_name" id="user_name" class="form-control">
-                                    </label><br>
-                                </div>
-                                <div class="form-group">
-                                    <label>Profile Picture:-</label>
-                                    <label style="display: block" >
-                                        <input type="file" placeholder="Profile Picture" name="profile_picture" id="profile_picture" class="form-control">
-                                    </label><br>
-                                </div>
-                                <div class="form-group">
-                                    <label>Phone Number :-</label>
-                                    <label style="display: block" >
-                                        <input type="text" placeholder="Phone Number" name="phone_number" id="phone_number" class="form-control">
-                                    </label><br>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile Number:-</label>
-                                    <label style="display: block" >
-                                        <input type="text" placeholder="Mobile Number" name="mobile_number" id="mobile_number" class="form-control">
-                                    </label><br>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address:-</label>
-                                    <label style="display: block" >
-                                        <input type="text" placeholder="Address" name="address" id="address" class="form-control">
-                                    </label><br>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            </form>
+                {{--form start--}}
+                <div class="col-12" data-animation="fadeInLeft" data-delay=".4s">
+                    <div class="col-sm-8" style="margin-top: 45px;margin-left: auto; margin-right: auto;">
+                        <div class="card">
+                            <div class="card-body ">
+                                <form class="form-sample" method="post" action="{{route('request_order')}}"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <h3 class="text-center">Request Your New Order</h3>
+                                    <div class="form-group">
+                                        <label>Order Type :-</label>
+                                        <select name="product_id" id="product_id">
+                                            @foreach($products as $product)
+                                                <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>height :-</label>
+                                        <label style="display: block">
+                                            <input type="text" placeholder="height" name="height" id="height"
+                                                   class="form-control">
+                                        </label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Width :-</label>
+                                        <label style="display: block">
+                                            <input type="text" placeholder="Width" name="Width"
+                                                   id="phone_number" class="form-control">
+                                        </label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Colour :-</label>
+                                        <label style="display: block">
+                                            <input type="text" placeholder="Colour" name="Colour"
+                                                   id="Colour" class="form-control">
+                                        </label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantity :-</label>
+                                        <label style="display: block">
+                                            <input type="text" placeholder="Quantity" name="Quantity" id="Quantity"
+                                                   class="form-control">
+                                        </label><br>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,3 +101,5 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/main.js"></script>
 @endsection
+
+
