@@ -46,4 +46,9 @@ class HomeController extends Controller
         return view ('product');
     }
 
+
+    //admin pages
+    public function admin_home(){
+        return view ('admin.admin_home');
+    }
 }

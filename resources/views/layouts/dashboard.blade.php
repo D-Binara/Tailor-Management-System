@@ -17,7 +17,7 @@
 
     <!--logout Scripts-->
     <!-- Scripts -->
-    {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -46,7 +46,7 @@
 {{--nav bar--}}
 <div id="app" style=" background-color: #8105D8">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-radius: 20px;">
-        <div class="container-fluid" >
+        <div class="container-fluid">
             <a class="h3 fw-bolder " style="color: #3B064D; text-decoration: none;" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -111,14 +111,16 @@
     <aside class="main-sidebar elevation-4 shadow-sm navbar-light" style="border-radius: 20px;">
 
         <!-- Sidebar -->
-        <div class="sidebar" >
+        <div class="sidebar">
 
             <!-- Sidebar Menu -->
             <nav class="mt-5">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Home Link -->
                     <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/home')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                        <a href="{{\URL::to('/home')}}" class="nav-link" style="color: #000000;">
+                            <!-- Change color here -->
                             <i class="nav-icon fas fa-home" style="color: #000000;"></i> <!-- Change color here -->
                             <p>Home</p>
                         </a>
@@ -126,23 +128,28 @@
 
                     <!-- product Link -->
                     <li class="nav-item {{ Request::is('product') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/product')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
-                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i> <!-- Change color here -->
+                        <a href="{{\URL::to('/product')}}" class="nav-link" style="color: #000000;">
+                            <!-- Change color here -->
+                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i>
+                            <!-- Change color here -->
                             <p>product</p>
                         </a>
                     </li>
 
                     <!-- My Orders Link -->
                     <li class="nav-item {{ Request::is('order') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/order')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
-                            <i class="nav-icon fas fa-tachometer-alt" style="color: #000000;"></i> <!-- Change color here -->
+                        <a href="{{\URL::to('/order')}}" class="nav-link" style="color: #000000;">
+                            <!-- Change color here -->
+                            <i class="nav-icon fas fa-tachometer-alt" style="color: #000000;"></i>
+                            <!-- Change color here -->
                             <p>My Orders</p>
                         </a>
                     </li>
 
                     <!-- New Order Link -->
-                    <li class="nav-item {{ Request::is('new_order') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/new_order')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
+                    <li class="nav-item {{ Request::is('getProduct') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/getProduct')}}" class="nav-link" style="color: #000000;">
+                            <!-- Change color here -->
                             <i class="nav-icon fas fa-calendar" style="color: #000000;"></i> <!-- Change color here -->
                             <p>New Order</p>
                         </a>
@@ -150,8 +157,10 @@
 
                     <!-- Profile Link -->
                     <li class="nav-item {{ Request::is('profile') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/profile')}}" class="nav-link" style="color: #000000;"> <!-- Change color here -->
-                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i> <!-- Change color here -->
+                        <a href="{{\URL::to('/profile')}}" class="nav-link" style="color: #000000;">
+                            <!-- Change color here -->
+                            <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i>
+                            <!-- Change color here -->
                             <p>Profile</p>
                         </a>
                     </li>
@@ -159,8 +168,6 @@
 
                 </ul>
             </nav>
-
-
 
 
             <!-- /.sidebar-menu -->
@@ -173,7 +180,7 @@
         @yield('dashboard')
     </div>
     <!-- /.content-wrapper -->
-
+</div>
 <!-- ./wrapper -->
 
 

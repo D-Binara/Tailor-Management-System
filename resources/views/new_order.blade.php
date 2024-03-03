@@ -34,19 +34,47 @@
                     <div class="col-sm-8" style="margin-top: 45px;margin-left: auto; margin-right: auto;">
                         <div class="card">
                             <div class="card-body ">
+                                <!-- Include this in your 'new_order' view or wherever you want to display messages -->
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                {{--end of message section--}}
+
+                                {{--validation error message display--}}
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                {{--End validation error message display--}}
+
+                                {{--Form start--}}
                                 <form class="form-sample" method="post" action="{{route('request_order')}}"
                                       enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT')
+                                    @method('Post')
                                     <h3 class="text-center">Request Your New Order</h3>
                                     <div class="form-group">
-                                        <label>Order Type :-</label>
-                                        <select name="product_id" id="product_id">
+                                        <label for="order_type">Select Product:</label>
+                                        <select name="order_type" id="order_type" class="form-control">
                                             @foreach($products as $product)
-                                                <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->name }}</option>
+                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>height :-</label>
                                         <label style="display: block">
@@ -57,21 +85,28 @@
                                     <div class="form-group">
                                         <label>Width :-</label>
                                         <label style="display: block">
-                                            <input type="text" placeholder="Width" name="Width"
-                                                   id="phone_number" class="form-control">
+                                            <input type="text" placeholder="Width" name="width"
+                                                   id="width" class="form-control">
                                         </label><br>
                                     </div>
                                     <div class="form-group">
                                         <label>Colour :-</label>
                                         <label style="display: block">
-                                            <input type="text" placeholder="Colour" name="Colour"
-                                                   id="Colour" class="form-control">
+                                            <input type="text" placeholder="Colour" name="color"
+                                                   id="color" class="form-control">
                                         </label><br>
                                     </div>
                                     <div class="form-group">
                                         <label>Quantity :-</label>
                                         <label style="display: block">
-                                            <input type="text" placeholder="Quantity" name="Quantity" id="Quantity"
+                                            <input type="text" placeholder="Quantity" name="quantity" id="quantity"
+                                                   class="form-control">
+                                        </label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price :-</label>
+                                        <label style="display: block">
+                                            <input type="text" placeholder="Price" name="price" id="price"
                                                    class="form-control">
                                         </label><br>
                                     </div>
@@ -79,6 +114,7 @@
                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
                                     </div>
                                 </form>
+                                {{--End of the form--}}
                             </div>
                         </div>
                     </div>
@@ -100,6 +136,7 @@
 
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/main.js"></script>
+
 @endsection
 
 

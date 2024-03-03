@@ -16,50 +16,66 @@ class OrderController extends Controller
         // Get the authenticated user
         $user = Auth::user();
 
-        // Fetch all products for the dropdown menu
-        $products = Product::all();
-
         // Validate the request data
         $validatedData = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'name' => 'required',
             'order_type' => 'required',
             'height' => 'required|integer',
             'width' => 'required|integer',
             'color' => 'required',
-            'order_date' => 'required|date',
             'delivery_date' => 'nullable|date',
-            'status' => 'required|in:pending,processing,completed',
+            'status' => 'pending',
+            'price' => 'required|numeric',
             'quantity' => 'required|integer|min:1',
+        ], [
+            'user_id.required' => 'User ID is required.',
+            'user_id.exists' => 'User does not exist.',
+            'name.required' => 'Name is required.',
+            'order_type.required' => 'Order type is required.',
+            'height.required' => 'Height is required.',
+            'height.integer' => 'Height must be an integer.',
+            'width.required' => 'Width is required.',
+            'width.integer' => 'Width must be an integer.',
+            'color.required' => 'Color is required.',
+            'order_date.required' => 'Order date is required.',
+            'order_date.date' => 'Order date must be a valid date.',
+            'delivery_date.date' => 'Delivery date must be a valid date.',
+            'status.required' => 'Status is required.',
+            'status.in' => 'Invalid status provided.',
+            'price.required' => 'Price is required.',
+            'price.numeric' => 'Price must be a numeric value.',
+            'quantity.required' => 'Quantity is required.',
+            'quantity.integer' => 'Quantity must be an integer.',
+            'quantity.min' => 'Quantity must be at least :min.',
         ]);
 
-        // Get the selected product
-        $product = Product::find($validatedData['product_id']);
+        // Add 'user_id' and name to the validated data
+        $validatedData['user_id'] = $user->id;
+        $validatedData['name'] = $user->name;
 
-        // Calculate the total price based on the selected product and quantity
-        $totalPrice = $product->price * $validatedData['quantity'];
+        // Set the current timestamp as the order date
+        $validatedData['order_date'] = now();
 
-        // Add other fields to $validatedData as needed
 
         // Create a new order using the validated data
-        $order = Order::create([
-            'user_id' => $user->id,
-            'product_id' => $validatedData['product_id'],
-            'name' => $validatedData['name'],
-            'order_type' => $validatedData['order_type'],
-            'height' => $validatedData['height'],
-            'width' => $validatedData['width'],
-            'color' => $validatedData['color'],
-            'order_date' => $validatedData['order_date'],
-            'delivery_date' => $validatedData['delivery_date'],
-            'status' => $validatedData['status'],
-            'price' => $totalPrice,
-            'quantity' => $validatedData['quantity'],
-            // Add other fields as needed
-        ]);
+        $order = Order::create($validatedData);
 
-        // Return a response indicating success or failure
-        return response()->json(['message' => 'Order created successfully', 'order' => $order], 201);
+        // Check if the order was created successfully
+        if ($order) {
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Order created successfully');
+        } else {
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'Failed to create order');
+        }
+
     }
+
+    public function getProduct()
+    {
+        $products = Product::all();
+
+        return view('new_order', compact('products'));
+    }
+
 
 }
