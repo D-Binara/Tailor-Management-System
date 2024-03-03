@@ -47,9 +47,6 @@ class User extends Authenticatable
         return $this->admin === 1;
     }
 
-    function isUser(){
-        return $this->admin === 0;
-    }
 
 
 }

@@ -19,8 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//user Route
-Route::group(['middleware' => 'user'], function () {
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('order');
@@ -29,7 +28,6 @@ Route::post('/request_order', [App\Http\Controllers\OrderController::class, 'req
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
 Route::get('/getProduct', [App\Http\Controllers\OrderController::class, 'getProduct'])->name('getProduct');
-});
 
 //admin routes
 Route::group(['middleware' => 'admin'], function () {
