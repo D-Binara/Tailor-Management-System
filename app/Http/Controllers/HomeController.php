@@ -51,4 +51,13 @@ class HomeController extends Controller
     public function admin_home(){
         return view ('admin.admin_home');
     }
+
+    public function addProduct(){
+        return view ('admin.addProduct');
+    }
+
+    public function view_orders(){
+        return view ('admin.view_orders');
+    }
+
 }

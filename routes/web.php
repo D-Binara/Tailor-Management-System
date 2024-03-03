@@ -32,6 +32,9 @@ Route::get('/getProduct', [App\Http\Controllers\OrderController::class, 'getProd
 //admin routes
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin_home', [App\Http\Controllers\HomeController::class, 'admin_home'])->name('admin_home');
+    Route::get('/addProduct', [App\Http\Controllers\HomeController::class, 'addProduct'])->name('addProduct');
+    Route::get('/view_orders', [App\Http\Controllers\HomeController::class, 'view_orders'])->name('view_orders');
+    Route::post('/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store');
 });
 
 

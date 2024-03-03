@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,6 +15,13 @@ class ProductController extends Controller
             'description' => 'nullable',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // adjust as needed
+        ], [
+            'name.required' => 'Product name is required.',
+            'price.required' => 'Product price is required.',
+            'price.numeric' => 'Product price must be a number.',
+            'image.image' => 'The uploaded file must be an image.',
+            'image.mimes' => 'The image must be of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image size must be less than 2MB.',
         ]);
 
         // Handle image upload
@@ -25,7 +33,13 @@ class ProductController extends Controller
         // Create a new product using the validated data
         $product = Product::create($validatedData);
 
-        // Return a response indicating success or failure
-        return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
+        // Check if the order was created successfully
+        if ($product) {
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Product created successfully');
+        } else {
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'Failed to create product');
+        }
     }
 }

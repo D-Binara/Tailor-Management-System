@@ -1,4 +1,4 @@
 @extends('admin.admin_dashboard')
 @section('dashboard')
-    admin test
+    admin orders
 @endsection
