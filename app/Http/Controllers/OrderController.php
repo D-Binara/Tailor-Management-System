@@ -70,12 +70,14 @@ class OrderController extends Controller
 
     }
 
-    public function getProduct()
-    {
-        $products = Product::all();
+    public function getOrder(){
 
-        return view('new_order', compact('products'));
+        $order = Order::All();
+
+        return view('order')->with(compact('order'));
     }
+
+
 
 
 }

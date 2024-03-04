@@ -26,9 +26,15 @@ class ProductController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('product_images', 'public');
-            $validatedData['image'] = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = 'public/product_images/';
+            $image->move($imagePath, $imageName);
+
+            // Save image path to the product
+            $validatedData['image'] = $imagePath . $imageName;
         }
+
 
         // Create a new product using the validated data
         $product = Product::create($validatedData);
@@ -41,5 +47,21 @@ class ProductController extends Controller
             // Redirect back with an error message
             return redirect()->back()->with('error', 'Failed to create product');
         }
+    }
+
+    public function getProduct()
+    {
+        $products = Product::all();
+
+        return view('new_order')->with(compact('products'));
+
+    }
+
+    public function getProductToProduct()
+    {
+        $product = Product::all();
+
+        return view('product')->with(compact('product'));
+
     }
 }

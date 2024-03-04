@@ -27,7 +27,9 @@ Route::get('/new_order', [App\Http\Controllers\HomeController::class, 'new_order
 Route::post('/request_order', [App\Http\Controllers\OrderController::class, 'request_order'])->name('request_order');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
-Route::get('/getProduct', [App\Http\Controllers\OrderController::class, 'getProduct'])->name('getProduct');
+Route::get('/getProduct', [App\Http\Controllers\ProductController::class, 'getProduct'])->name('getProduct');
+Route::get('/getProductToProduct', [App\Http\Controllers\ProductController::class, 'getProductToProduct'])->name('getProductToProduct');
+Route::get('/getOrder', [App\Http\Controllers\OrderController::class, 'getOrder'])->name('getOrder');
 
 //admin routes
 Route::group(['middleware' => 'admin'], function () {

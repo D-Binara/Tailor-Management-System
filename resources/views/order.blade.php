@@ -3,10 +3,10 @@
 @section('dashboard')
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    {{--    <link rel="stylesheet" href="assets/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
+    {{--    <link rel="stylesheet" href="assets/css/animated-headline.css">--}}
+    {{--    <link rel="stylesheet" href="assets/css/slick.css">--}}
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- ? Preloader Start -->
@@ -23,69 +23,47 @@
     <!-- Preloader Start-->
 
     <!--? slider Area Start-->
-    <div class="slider-area  position-relative " style="background-image: url('{{url('/images/tailor_shop_dark.jpg')}}'); background-size: cover; height: 100vh;">
+    <div class="slider-area  position-relative full-page-container"
+         style="background-image: url('{{url('/images/tailor_shop_dark.jpg')}}'); background-size: cover;">
         <div class="slider-active">
             <!-- Single Slider -->
-            <div class="single-slider position-relative hero-overly slider-height  d-flex"
-                 data-background="assets/img/hero/h1_hero.png">
+            <div class="single-slider position-relative slider-height  d-flex">
 
-                {{--original--}}
-
-                <div class="col-2"></div>
-                <div class="col-md-8 " data-animation="fadeInLeft" data-delay=".4s" style="padding-top:120px ">
-                    <div class="card ">
-                        <div class="card-header h1 ">Hi, {{Auth::user()->name}}!</div>
-
-                        <div class="card-body">
-                            <div class="row mt-5">
-                                <div class="container card col-4 text-center shadow-lg">
-                                    <div class="h2"> Total orders</div>
-                                    <div class="h3"> 10</div>
-                                </div>
-                                <div class="container card col-4 text-center shadow-lg">
-                                    <div class="h2">Pending orders</div>
-                                    <div class="h3"> 10</div>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="container card col-4 text-center shadow-lg">
-                                    <div class="h2">Processing orders</div>
-                                    <div class="h3"> 10</div>
-                                </div>
-                                <div class="container card col-4 text-center shadow-lg">
-                                    <div class="h2">Finish orders</div>
-                                    <div class="h3"> 10</div>
-                                </div>
-                            </div>
+                {{--Animation--}}
+                <div class="col-12" data-animation="fadeInLeft" data-delay=".4s">
+                    
+                    <div class="row">
+                        <div class="col-2"></div>
+                        {{--orders table--}}
+                        <div class="col-8" >
+                            <table class="table table-hover mt-5">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">order_type</th>
+                                    <th scope="col">color</th>
+                                    <th scope="col">quantity</th>
+                                    <th scope="col">status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($order as $orders)
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>{{$orders->order_type}}</td>
+                                        <td>{{$orders->color}}</td>
+                                        <td>{{$orders->quantity}}</td>
+                                        <td>{{$orders->status}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
+                        {{--orders table end--}}
+                        <div class="col-2"></div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-
-
-                copy
-
-                {{--                <div class="container">--}}
-                {{--                    <div class="row">--}}
-                {{--                        <div class="col-xl-6 col-lg-6">--}}
-                {{--                            <div class="hero-caption">--}}
-                {{--                                <h1 data-animation="fadeInLeft" data-delay=".4s">We make cloths that suit you</h1>--}}
-                {{--                                <p data-animation="fadeInLeft" data-delay=".6s">TLorem ipsum dolor sit amet, consectetur--}}
-                {{--                                    adipiscing elit.--}}
-                {{--                                    Suspendisse varius enim in eros elementum tristique. Duis--}}
-                {{--                                    cursus, mi quis viverra ornare.</p>--}}
-                {{--                                <!-- Hero Btn -->--}}
-                {{--                                <a href="#" class="btn" data-animation="fadeInLeft" data-delay=".8s">Our Services</a>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                <!-- Left img -->
-                {{--                <div class="hero-img">--}}
-                {{--                    <img src="assets/img/hero/h1_hero1.png" alt="" data-animation="fadeInRight"--}}
-                {{--                         data-transition-duration="5s">--}}
-                {{--                </div>--}}
-
+                {{--Animation end--}}
             </div>
         </div>
     </div>

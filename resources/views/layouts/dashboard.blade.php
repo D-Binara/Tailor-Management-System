@@ -127,8 +127,8 @@
                     </li>
 
                     <!-- product Link -->
-                    <li class="nav-item {{ Request::is('product') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/product')}}" class="nav-link" style="color: #000000;">
+                    <li class="nav-item {{ Request::is('getProductToProduct') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/getProductToProduct')}}" class="nav-link" style="color: #000000;">
                             <!-- Change color here -->
                             <i class="nav-icon fas fa-user-graduate" style="color: #000000;"></i>
                             <!-- Change color here -->
@@ -137,8 +137,8 @@
                     </li>
 
                     <!-- My Orders Link -->
-                    <li class="nav-item {{ Request::is('order') ? 'active' : '' }}">
-                        <a href="{{\URL::to('/order')}}" class="nav-link" style="color: #000000;">
+                    <li class="nav-item {{ Request::is('getOrder') ? 'active' : '' }}">
+                        <a href="{{\URL::to('/getOrder')}}" class="nav-link" style="color: #000000;">
                             <!-- Change color here -->
                             <i class="nav-icon fas fa-tachometer-alt" style="color: #000000;"></i>
                             <!-- Change color here -->
