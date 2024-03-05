@@ -26,16 +26,13 @@
         .nav-item.active {
             background-color: #8105D8; /* Set the background color for the active item */
             color: #fff; /* Set the text color for the active item */
-            border-radius: 20px;
         }
 
         .full-page-container {
             background-image: url('{{url('/images/tailor_shop_dark.jpg')}}');
             background-size: cover;
             /* Set the height to cover the entire viewport */
-            border-radius: 20px;
         }
-
     </style>
 
 
@@ -45,7 +42,7 @@
 
 {{--nav bar--}}
 <div id="app" style=" background-color: #8105D8">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-radius: 20px;">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
         <div class="container-fluid">
             <a class="h3 fw-bolder " style="color: #3B064D; text-decoration: none;" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -56,6 +53,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
@@ -63,6 +61,22 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2" style="width: 400px;"> <!-- Set the width as per your preference -->
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <!--User logout-->
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
                     @guest
@@ -105,10 +119,11 @@
 </div>
 {{--nav bar end--}}
 
+
 <div class="wrapper" style="background-color: #8105D8">
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar elevation-4 shadow-sm navbar-light" style="border-radius: 20px;">
+    <aside class="main-sidebar elevation-4 shadow-sm navbar-light" >
 
         <!-- Sidebar -->
         <div class="sidebar">
