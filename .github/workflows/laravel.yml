@@ -23,7 +23,7 @@ jobs:
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=3
+          --health-retries=5
 
     steps:
     - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
       with:
         php-version: '8.1'
     - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      run: cp .env.example .env
     - name: Get Composer Cache Directory
       id: composer-cache
       run: echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -56,14 +56,17 @@ jobs:
         sed -i 's/DB_HOST=127.0.0.1/DB_HOST=mysql/' .env
     - name: Wait for MySQL to be ready
       run: |
-        for i in {1..30}; do
+        for i in {1..60}; do
           if mysqladmin ping -h mysql --silent; then
             echo "MySQL is up and running"
             break
           fi
-          echo "Waiting for MySQL..."
+          echo "Waiting for MySQL ($i/60)..."
           sleep 2
         done
+        mysqladmin ping -h mysql --silent
+    - name: Check MySQL logs
+      run: docker logs $(docker ps -q --filter ancestor=mysql:8.0)
     - name: Create Database
       run: php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
