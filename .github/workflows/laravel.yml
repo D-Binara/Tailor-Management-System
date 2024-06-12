@@ -53,8 +53,7 @@ jobs:
         sed -i 's/DB_DATABASE=database\/database.sqlite/DB_DATABASE=laravel_test/' .env
         sed -i 's/DB_USERNAME=null/DB_USERNAME=root/' .env
         sed -i 's/DB_PASSWORD=null/DB_PASSWORD=root/' .env
-        sed -i 's/DB_HOST=127.0.0.1/DB_HOST=127.0.0.1/' .env
-        php artisan config:cache
+        sed -i 's/DB_HOST=127.0.0.1/DB_HOST=mysql/' .env
     - name: Create Database
       run: php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
@@ -63,5 +62,5 @@ jobs:
         DB_DATABASE: laravel_test
         DB_USERNAME: root
         DB_PASSWORD: root
-        DB_HOST: 127.0.0.1
+        DB_HOST: mysql
       run: php artisan test
