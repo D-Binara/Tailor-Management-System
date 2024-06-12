@@ -56,7 +56,14 @@ jobs:
         sed -i 's/DB_HOST=127.0.0.1/DB_HOST=mysql/' .env
     - name: Wait for MySQL to be ready
       run: |
-        dockerize -wait tcp://mysql:3306 -timeout 1m
+        for i in {1..30}; do
+          if mysqladmin ping -h mysql --silent; then
+            echo "MySQL is up and running"
+            break
+          fi
+          echo "Waiting for MySQL..."
+          sleep 2
+        done
     - name: Create Database
       run: php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
