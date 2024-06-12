@@ -62,5 +62,5 @@ jobs:
         DB_DATABASE: laravel_test
         DB_USERNAME: root
         DB_PASSWORD: root
-        DB_HOST: mysql
+        DB_HOST: 127.0.0.1
       run: php artisan test
