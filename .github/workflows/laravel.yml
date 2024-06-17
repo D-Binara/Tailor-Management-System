@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - name: Install npm dependencies
+        run: npm install  
+
       - name: Copy .env file
         run: cp .env.example .env
 
@@ -52,6 +55,9 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: root
+
+      - name: Run npm development script 
+        run: npm run dev 
 
       - name: Run tests
         run: php vendor/bin/phpunit
