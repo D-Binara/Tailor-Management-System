@@ -2,8 +2,8 @@ name: Deploy Laravel Project
 
 on:
   push:
-   branches:
-    - main  # Change to the branch you want to deploy from
+    branches:
+      - deployment  # Change to the branch you want to deploy from
 
 jobs:
   deploy:
@@ -32,12 +32,16 @@ jobs:
         with:
           php-version: 8.1
 
-      
-      - name: Install dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install PHP dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Install npm dependencies
-        run: npm install  
+      - name: Install Node.js dependencies
+        run: npm install
 
       - name: Copy .env file
         run: cp .env.example .env
@@ -56,12 +60,11 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
 
-      - name: Run npm development script 
-        run: npm run dev 
-
       - name: Run tests
         run: php vendor/bin/phpunit
 
+      - name: Build assets
+        run: npm run dev
 
       # Add additional steps for deployment if needed
       # e.g., deploying to a server or cloud service
