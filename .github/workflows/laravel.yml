@@ -60,11 +60,11 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
 
-      - name: Run tests
-        run: php vendor/bin/phpunit
-
       - name: Build assets
         run: npm run dev
+
+      - name: Run tests
+        run: php vendor/bin/phpunit
 
       # Add additional steps for deployment if needed
       # e.g., deploying to a server or cloud service
