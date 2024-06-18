@@ -61,7 +61,7 @@ jobs:
           DB_PASSWORD: root
 
       - name: Build assets
-        run: npm run dev
+        run: npm run build
 
       - name: Run tests
         run: php vendor/bin/phpunit
